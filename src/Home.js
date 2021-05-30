@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import  { useState } from 'react';
 
 
 const Wrapper = styled.div``;
@@ -7,20 +8,20 @@ const Wrapper = styled.div``;
 
 const Home = () => {
 
+    const [name, setName] = useState('Karolina');
+    const [age, setAge] = useState(33);
+
     const handleClick = () => {
-        console.log("Hello!");
+        setName("Adam");
+        setAge(50);
     }
-    const handleClickAgain = (name) => {
-        console.log("Hello, " + name);
-    }
+ 
 
     return ( 
         <Wrapper>
             <h2>Home Page</h2>
+            <p>{ name } ma { age } lat</p>   
             <button onClick={handleClick}>Click me</button>
-            <button onClick={() => {
-                handleClickAgain("Karolina")
-            }}>Click me again</button>
         </Wrapper>
      );
 }
