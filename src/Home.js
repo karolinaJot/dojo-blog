@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BlogsList from './BlogsList';
 
 
@@ -23,9 +23,14 @@ const Home = () => {
         setBlogs(newBlog);
     }
 
+    useEffect(() => {
+        console.log('useEffect ran');
+    })
+
     return (
         <Wrapper>
            <BlogsList blogs={blogs} title='All Blogs!'  handleDelete={handleDelete}/>
+           <p>!</p>
           
         </Wrapper>
     );
