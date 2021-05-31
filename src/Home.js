@@ -12,6 +12,7 @@ const Wrapper = styled.div``;
 const Home = () => {
 
     const [blogs, setBlogs] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const Home = () => {
             })
             .then( data => {
                 setBlogs(data);
+                setIsLoading(false);
                 console.log(data);
             })
     }, [])
@@ -28,6 +30,7 @@ const Home = () => {
     return (
         <Wrapper>
             {/* --- sprawdza, czy lewa strona (blogs) jest true, jeśli nie, to w ogóle nie zjamuje się prawą stroną---- */}
+           { isLoading && <div>Loading... </div>} 
            { blogs && <BlogsList blogs={blogs} title='All Blogs!' /> }
         </Wrapper>
     );
