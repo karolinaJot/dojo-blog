@@ -11,27 +11,24 @@ const Wrapper = styled.div``;
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState([
-        { title: 'My new website!', body: 'lorem ipsum...', author: 'Karolina', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'Maciej', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'Karolina', id: 3 }
+    const [blogs, setBlogs] = useState([]);
 
-    ]);
-
-    const handleDelete = (id) => {
-        const newBlog = blogs.filter( (blog) => blog.id !== id);
-        setBlogs(newBlog);
-    }
 
     useEffect(() => {
-        console.log('useEffect ran');
-    })
+        fetch('http://localhost:8000/blogs')
+            .then( res => {
+                return res.json();
+            })
+            .then( data => {
+                setBlogs(data);
+                console.log(data);
+            })
+    }, [])
 
     return (
         <Wrapper>
-           <BlogsList blogs={blogs} title='All Blogs!'  handleDelete={handleDelete}/>
-           <p>!</p>
-          
+            {/* --- sprawdza, czy lewa strona (blogs) jest true, jeśli nie, to w ogóle nie zjamuje się prawą stroną---- */}
+           { blogs && <BlogsList blogs={blogs} title='All Blogs!' /> }
         </Wrapper>
     );
 }
