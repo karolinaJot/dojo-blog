@@ -29,6 +29,7 @@ const BlogsList = (props) => {
                 <PreViewWrapper key={blog.id}>
                     <h2>{blog.title}</h2>
                     <p> wirtten by {blog.author}</p>
+                    <button onClick={() => (props.handleDelete(blog.id))}> delete blog </button>
                 </PreViewWrapper>
             ))}
         </Wrapper>
