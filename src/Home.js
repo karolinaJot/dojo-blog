@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
 import BlogsList from './BlogsList';
+import useFetch from './useFetch';
 
 
 const Wrapper = styled.div``;
@@ -11,30 +11,7 @@ const Wrapper = styled.div``;
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-
-    useEffect(() => {
-        fetch('http://localhost:8000/blogs')
-            .then( res => {
-                if(!res.ok) {
-                    throw Error('Could not fetch the data. Sorry');
-                }    
-                return res.json();
-            })
-            .then( data => {
-                setBlogs(data);
-                setIsLoading(false);
-                setError(null);
-                
-            })
-            .catch( err => {
-                setIsLoading(false);
-                setError(err.message);
-            })
-    }, [])
+    const {data: blogs, isLoading, error} = useFetch('http://localhost:8000/blogs'); 
 
     return (
         <Wrapper>
