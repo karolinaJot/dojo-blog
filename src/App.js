@@ -1,8 +1,10 @@
 
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navbar from './Navbar';
 import Home from './Home';
+import Create from './Create';
 
 
 
@@ -17,15 +19,22 @@ const ContentWrapper = styled.div`
 
 function App() {
 
-
-
   return (
-    <Wrapper>
-      <Navbar />
-      <ContentWrapper>
-        <Home />
-      </ContentWrapper>
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <Navbar />
+        <ContentWrapper>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/create">
+              <Create />
+            </Route>
+          </Switch>
+        </ContentWrapper>
+      </Wrapper>
+    </Router>
 
   );
 }
