@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -19,20 +20,26 @@ const PreViewWrapper = styled.div`
         margin-bottom: 8px;
     };
 
+    a {
+        text-decoration: none;
+    }
+
 `;
 
 const BlogsList = (props) => {
-    return ( 
+    return (
         <Wrapper>
             {props.title}
-             { props.blogs.map((blog) => (
+            { props.blogs.map((blog) => (
                 <PreViewWrapper key={blog.id}>
-                    <h2>{blog.title}</h2>
-                    <p> wirtten by {blog.author}</p>
+                    <Link to={`/blogs/${blog.id}`}>
+                        <h2>{blog.title}</h2>
+                        <p> wirtten by {blog.author}</p>
+                    </Link>
                 </PreViewWrapper>
             ))}
         </Wrapper>
-     );
+    );
 }
- 
+
 export default BlogsList;
